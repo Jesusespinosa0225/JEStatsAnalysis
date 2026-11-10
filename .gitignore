@@ -1,0 +1,5 @@
+.DS_Store
+*.pyc
+__pycache__/
+meta_config.json
+spotify_config.json

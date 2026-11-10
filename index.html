@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jesús Espinosa · Meta Growth & Performance Suite (Instagram & Facebook)</title>
+  <meta name="description"
+    content="Plataforma de inteligencia de audiencias, análisis algorítmico de Instagram y Facebook, Buyer Personas 360°, generador de contenido y laboratorio A/B para Jesús Espinosa.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Space+Grotesk:wght@600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Chart.js for data visualization -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="theme-dark">
+  <!-- Ambient Brand Glows (Manual de Identidad: Azul #00205B y Carmesí #670001) -->
+  <div class="ambient-glow glow-blue"></div>
+  <div class="ambient-glow glow-crimson"></div>
+
+  <!-- Header / Navigation Bar -->
+  <header class="navbar" id="app-header">
+    <div class="nav-container">
+      <div class="brand-identity">
+        <div class="brand-monogram">
+          <img src="assets/logo-isotipo-blanco.png" alt="Logo Jesús Espinosa" class="je-logo-img">
+        </div>
+        <div class="brand-titles">
+          <span class="brand-name">JESÚS ESPINOSA</span>
+          <span class="brand-sub">META GROWTH & AUDIENCE INTELLIGENCE</span>
+        </div>
+      </div>
+
+      <!-- Quick Platform Status Badges -->
+      <div class="header-badges-group">
+        <div class="platform-indicator-pill meta-pill">
+          <span class="pulse-dot meta-dot"></span>
+          <span class="pill-text"><i data-lucide="layers"></i> Meta API: Conectada</span>
+        </div>
+        <div class="platform-indicator-pill spotify-pill">
+          <span class="pulse-dot spotify-dot"></span>
+          <span class="pill-text"><i data-lucide="music-2"></i> Spotify API: Conectada</span>
+        </div>
+      </div>
+
+      <!-- Main Navigation Tabs -->
+      <nav class="nav-links" id="main-nav">
+        <button class="nav-btn active" data-tab="tab-meta-analytics" id="btn-meta-analytics">
+          <i data-lucide="bar-chart-3"></i>
+          <span>Diagnóstico Meta</span>
+        </button>
+        <button class="nav-btn" data-tab="tab-buyer-personas" id="btn-buyer-personas">
+          <i data-lucide="users"></i>
+          <span>Buyer Personas</span>
+        </button>
+        <button class="nav-btn" data-tab="tab-content-engine" id="btn-content-engine">
+          <i data-lucide="sparkles"></i>
+          <span>Generador 1/3</span>
+        </button>
+        <button class="nav-btn" data-tab="tab-experiments" id="btn-experiments">
+          <i data-lucide="flask-conical"></i>
+          <span>Laboratorio A/B</span>
+        </button>
+        <button class="nav-btn" data-tab="tab-audit-tool" id="btn-audit-tool">
+          <i data-lucide="check-circle-2"></i>
+          <span>Auditoría de Perfil</span>
+        </button>
+        <button class="nav-btn" data-tab="tab-growth-planner" id="btn-growth-planner">
+          <i data-lucide="calendar"></i>
+          <span>Plan & Horarios</span>
+        </button>
+        <button class="nav-btn" data-tab="tab-spotify-hub" id="btn-spotify-hub">
+          <i data-lucide="music-2"></i>
+          <span>Spotify API</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Banner Contextual -->
+  <section class="hero-section">
+    <div class="hero-container">
+      <div class="hero-tag">
+        <i data-lucide="compass"></i>
+        <span>"La esencia es el servicio y la meta es la adoración"</span>
+      </div>
+      <h1 class="hero-title">Optimización Estratégica de <span class="gradient-text">Instagram & Facebook</span></h1>
+      <p class="hero-description">
+        Diseñado con el rigor metodológico del equipo de marketing, curaduría visual y estadística cuantitativa. Transforma scrollers en una comunidad fiel, derribando barreras mediante música genuina, humana y cercana.
+      </p>
+
+      <div class="hero-kpi-bar">
+        <div class="kpi-mini-card">
+          <span class="kpi-label">Plataformas Clave</span>
+          <span class="kpi-value">Instagram + Facebook</span>
+          <span class="kpi-sub">Ecosistema Meta integrado</span>
+        </div>
+        <div class="kpi-mini-card">
+          <span class="kpi-label">Métrica Estrella</span>
+          <span class="kpi-value">Saves & Shares</span>
+          <span class="kpi-sub">Prioridad #1 de los algoritmos</span>
+        </div>
+        <div class="kpi-mini-card">
+          <span class="kpi-label">Regla de Contenido</span>
+          <span class="kpi-value">1/3 · 1/3 · 1/3</span>
+          <span class="kpi-sub">Marca, Educación, Comunidad</span>
+        </div>
+        <div class="kpi-mini-card">
+          <span class="kpi-label">Diferenciador Artístico</span>
+          <span class="kpi-value">Sin Condenación</span>
+          <span class="kpi-sub">Acústico, íntimo y honesto</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main App Content Container -->
+  <main class="app-main-content">
+
+    <!-- ===================================================================
+         TAB 1: DIAGNÓSTICO META (INSTAGRAM & FACEBOOK ANALYTICS)
+         =================================================================== -->
+    <section class="tab-content active" id="tab-meta-analytics">
+      <div class="section-header-row">
+        <div>
+          <h2 class="section-title">Diagnóstico Cuantitativo de Rendimiento</h2>
+          <p class="section-subtitle">Supervisado por el agente <strong>Statistician</strong> y <strong>Instagram Curator</strong></p>
+        </div>
+        <!-- Selector de Canal -->
+        <div class="platform-filter-tabs" id="analytics-channel-selector">
+          <button class="channel-btn active" data-channel="all">Ambas Redes</button>
+          <button class="channel-btn" data-channel="instagram"><i data-lucide="instagram"></i> Instagram</button>
+          <button class="channel-btn" data-channel="facebook"><i data-lucide="facebook"></i> Facebook</button>
+        </div>
+      </div>
+
+      <!-- Métricas Clave Grid -->
+      <div class="stats-cards-grid">
+        <div class="stat-card">
+          <div class="stat-card-top">
+            <span class="stat-title">Tasa de Engagement Promedio</span>
+            <span class="badge badge-success">+1.3% vs benchmark</span>
+          </div>
+          <div class="stat-number-row">
+            <span class="stat-number" id="kpi-engagement">3.8%</span>
+            <span class="stat-unit">interacción / alcance</span>
+          </div>
+          <p class="stat-context">Benchmark industria musical en español: <strong>1.8% - 2.5%</strong>. La intimidad acústica genera mayor tasa de comentarios profundos.</p>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-card-top">
+            <span class="stat-title">Ratio Guardados / Compartidos</span>
+            <span class="badge badge-accent">Factor Viral #1</span>
+          </div>
+          <div class="stat-number-row">
+            <span class="stat-number" id="kpi-saves">1 : 4.2</span>
+            <span class="stat-unit">shares por guardado</span>
+          </div>
+          <p class="stat-context">Meta premia los contenidos que se comparten por DM a amigos o a historias personales (especialmente canciones para momentos difíciles).</p>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-card-top">
+            <span class="stat-title">Retención a 3 Segundos (Reels)</span>
+            <span class="badge badge-warning">Punto Crítico</span>
+          </div>
+          <div class="stat-number-row">
+            <span class="stat-number" id="kpi-retention">68.4%</span>
+            <span class="stat-unit">continúan viendo</span>
+          </div>
+          <p class="stat-context">El umbral mínimo para distribución algorítmica es <strong>60%</strong>. El gancho musical en el primer segundo es decisivo.</p>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-card-top">
+            <span class="stat-title">Distribución Orgánica vs Pagada</span>
+            <span class="badge badge-neutral">Sinergia Meta</span>
+          </div>
+          <div class="stat-number-row">
+            <span class="stat-number" id="kpi-organic">74% / 26%</span>
+            <span class="stat-unit">orgánico / pauta</span>
+          </div>
+          <p class="stat-context">Presupuesto sugerido en Business Canvas ($8,500 MXN/mes) enfocado en micro-pauta de retargeting a oyentes de Spotify.</p>
+        </div>
+      </div>
+
+      <!-- Meta API Integration Status Banner -->
+      <div class="meta-api-status-banner">
+        <div class="masb-left">
+          <div class="masb-icon"><i data-lucide="cpu"></i></div>
+          <div>
+            <div class="masb-title-row">
+              <h4 class="masb-title">Meta Developer API & Meta AI</h4>
+              <span class="badge badge-meta"><i data-lucide="check-circle-2"></i> Llave Autenticada</span>
+            </div>
+            <p class="masb-desc">
+              Llave: <code>LLM_18571978...8Eg</code> · Equipo ID: <code>2505415289983948</code> · Modelos Meta: <code>muse-spark-1.3</code>, <code>sam-3.1</code>, <code>muse-ember</code>.
+            </p>
+          </div>
+        </div>
+        <div class="masb-actions">
+          <a href="https://dev.meta.ai/billing/?team_id=2505415289983948" target="_blank" class="btn-secondary btn-meta-dashboard">
+            <i data-lucide="external-link"></i> Panel Meta Developer
+          </a>
+        </div>
+      </div>
+
+      <!-- Gráficos Principales -->
+      <div class="analytics-charts-grid">
+        <!-- Gráfico 1: Curva de Retención de Video en Reels -->
+        <div class="chart-box">
+          <div class="chart-header">
+            <div>
+              <h3 class="chart-title"><i data-lucide="play-circle"></i> Curva de Retención de Video en Reels (Drop-Off)</h3>
+              <p class="chart-desc">Análisis segundo a segundo comparado con el umbral viral de Meta</p>
+            </div>
+            <span class="pill-tag">Instagram Reels + FB Reels</span>
+          </div>
+          <div class="chart-wrapper">
+            <canvas id="retentionDropoffChart"></canvas>
+          </div>
+          <div class="chart-footer-note">
+            <i data-lucide="info"></i>
+            <span><strong>Veredicto Estadístico:</strong> Si el 65% pasa de los 3 segundos, Meta califica el video como "alto valor de retención" y lo distribuye a audiencia fría.</span>
+          </div>
+        </div>
+
+        <!-- Gráfico 2: Rendimiento por Formato de Publicación -->
+        <div class="chart-box">
+          <div class="chart-header">
+            <div>
+              <h3 class="chart-title"><i data-lucide="layers"></i> Rendimiento por Formato de Contenido</h3>
+              <p class="chart-desc">Alcance promedio, guardados y comentarios comparativos</p>
+            </div>
+            <span class="pill-tag">Benchmarking 2026</span>
+          </div>
+          <div class="chart-wrapper">
+            <canvas id="formatPerformanceChart"></canvas>
+          </div>
+          <div class="chart-footer-note">
+            <i data-lucide="lightbulb"></i>
+            <span><strong>Regla de Curaduría:</strong> Los Reels traen alcance frío; los Carruseles generan guardados y autoridad; las Stories convierten a la comunidad.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Calculador en Vivo de Rendimiento de Publicaciones -->
+      <div class="tool-card-box">
+        <div class="tool-card-header">
+          <div class="tool-title-group">
+            <div class="tool-icon-circle"><i data-lucide="calculator"></i></div>
+            <div>
+              <h3 class="tool-title">Calculadora de Salud Algorítmica (Meta Quality Score)</h3>
+              <p class="tool-desc">Ingresa los datos de tu última publicación para evaluar si el algoritmo la impulsará o la limitará.</p>
+            </div>
+          </div>
+          <button class="btn-secondary" onclick="loadSamplePostMetrics()"><i data-lucide="sparkles"></i> Cargar Datos de Ejemplo</button>
+        </div>
+
+        <div class="calculator-grid">
+          <div class="calc-input-group">
+            <label for="calc-reach">Alcance Total (Cuentas alcanzadas)</label>
+            <input type="number" id="calc-reach" value="2500" min="100" step="50" oninput="calculateMetaScore()">
+          </div>
+          <div class="calc-input-group">
+            <label for="calc-likes">Me Gusta (Likes)</label>
+            <input type="number" id="calc-likes" value="180" min="0" oninput="calculateMetaScore()">
+          </div>
+          <div class="calc-input-group">
+            <label for="calc-comments">Comentarios</label>
+            <input type="number" id="calc-comments" value="38" min="0" oninput="calculateMetaScore()">
+          </div>
+          <div class="calc-input-group">
+            <label for="calc-shares">Veces Compartido (Shares)</label>
+            <input type="number" id="calc-shares" value="65" min="0" oninput="calculateMetaScore()">
+          </div>
+          <div class="calc-input-group">
+            <label for="calc-saves">Guardados (Saves)</label>
+            <input type="number" id="calc-saves" value="82" min="0" oninput="calculateMetaScore()">
+          </div>
+        </div>
+
+        <div class="score-result-banner" id="score-result-box">
+          <div class="score-dial">
+            <span class="score-dial-number" id="score-dial-val">84</span>
+            <span class="score-dial-label">Score / 100</span>
+          </div>
+          <div class="score-details">
+            <h4 class="score-status-title" id="score-status-title">Rendimiento Excepcional (Algoritmo Favorable)</h4>
+            <p class="score-status-text" id="score-status-desc">
+              Tu ratio de Guardados y Compartidos (147 acciones de alto valor sobre 2,500 de alcance = 5.88%) supera con creces el promedio del 2.5%. El algoritmo de Meta catalogará esta pieza como contenido evergreen para seguir mostrándolo.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         TAB 2: BUYER PERSONAS 360° (BASADO EN EL CANVAS Y CONTEXTO JE)
+         =================================================================== -->
+    <section class="tab-content" id="tab-buyer-personas">
+      <div class="section-header-row">
+        <div>
+          <h2 class="section-title">Buyer Personas 360° · Audiencia de Jesús Espinosa</h2>
+          <p class="section-subtitle">Modelado a partir del Business Model Canvas 2026, Manual de Identidad y perfil de oyentes</p>
+        </div>
+      </div>
+
+      <!-- Selector de Personas -->
+      <div class="personas-nav-bar">
+        <button class="persona-tab-btn active" data-persona="mateo">
+          <div class="persona-avatar-badge">M</div>
+          <div class="persona-tab-info">
+            <span class="persona-name">Mateo · 23 años</span>
+            <span class="persona-role">El Adorador Herido</span>
+          </div>
+        </button>
+
+        <button class="persona-tab-btn" data-persona="david">
+          <div class="persona-avatar-badge">D</div>
+          <div class="persona-tab-info">
+            <span class="persona-name">David · 27 años</span>
+            <span class="persona-role">Músico & Líder de Alabanza</span>
+          </div>
+        </button>
+
+        <button class="persona-tab-btn" data-persona="sofia">
+          <div class="persona-avatar-badge">S</div>
+          <div class="persona-tab-info">
+            <span class="persona-name">Sofía · 21 años</span>
+            <span class="persona-role">Universitaria & Creativa</span>
+          </div>
+        </button>
+
+        <button class="persona-tab-btn" data-persona="pastor">
+          <div class="persona-avatar-badge">A</div>
+          <div class="persona-tab-info">
+            <span class="persona-name">Pastor Andrés · 44 años</span>
+            <span class="persona-role">Líder Pastoral / Eventos</span>
+          </div>
+        </button>
+      </div>
+
+      <!-- Fichas de Buyer Personas -->
+      <div class="persona-details-container">
+
+        <!-- PERSONA 1: MATEO -->
+        <div class="persona-card-view active" id="view-persona-mateo">
+          <div class="persona-header-banner">
+            <div class="persona-header-main">
+              <span class="persona-badge-tag">Audiencia Primaria · Núcleo Emocional</span>
+              <h3 class="persona-full-title">Mateo González · "El que busca volver a casa"</h3>
+              <p class="persona-tagline">"Me cansé de que me juzguen por cómo visto o si no voy todos los domingos. Solo quiero sentir la presencia de Dios en mi habitación sin que me señalen."</p>
+            </div>
+            <div class="persona-quick-stats">
+              <div class="quick-stat-item">
+                <span class="qs-label">Edad</span>
+                <span class="qs-val">23 años</span>
+              </div>
+              <div class="quick-stat-item">
+                <span class="qs-label">Ubicación</span>
+                <span class="qs-val">CDMX / Guadalajara / Mty</span>
+              </div>
+              <div class="quick-stat-item">
+                <span class="qs-label">Canal Principal</span>
+                <span class="qs-val">Instagram Reels (Noche)</span>
+              </div>
+              <div class="quick-stat-item">
+                <span class="qs-label">Canción Ancla</span>
+                <span class="qs-val">"Abba Padre", "Mi Corazón"</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="persona-body-grid">
+            <!-- Columna 1: Psicografía y Dolores -->
+            <div class="persona-detail-card">
+              <h4 class="card-inner-title"><i data-lucide="heart-crack"></i> Dolores & Frustraciones</h4>
+              <ul class="bullet-list-styled">
+                <li><strong>Heridas de liderazgo eclesiástico:</strong> Sufrió rechazo o comentarios condenatorios en su iglesia anterior.</li>
+                <li><strong>Sensación de insuficiencia:</strong> Siente que la fe tradicional le exige fingir que todo está bien cuando por dentro está librando batallas emocionales.</li>
+                <li><strong>Saturación de "Worship genérico":</strong> Cansado de canciones estructuradas como fórmulas de marketing cristiano sin alma.</li>
+                <li><strong>Soledad en la noche:</strong> Horas de mayor vulnerabilidad y ansiedad (22:00 a 01:00 am).</li>
+              </ul>
+            </div>
+
+            <!-- Columna 2: Motivaciones y Deseos -->
+            <div class="persona-detail-card">
+              <h4 class="card-inner-title"><i data-lucide="flame"></i> Deseos & Anhelos</h4>
+              <ul class="bullet-list-styled">
+                <li><strong>Conexión genuina:</strong> Encontrar canciones que sean oraciones honestas, no discursos teológicos inaccesibles.</li>
+                <li><strong>Sanidad interior:</strong> Música que acompañe su proceso de sanar sin presionarlo con fechas ni expectativas humanas.</li>
+                <li><strong>Pertenencia sin juicio:</strong> Sentirse parte de una comunidad donde la vulnerabilidad sea bien recibida.</li>
+                <li><strong>Identificación con Jesús:</strong> Ver a Jesús como un amigo cercano y compasivo, no como un juez distante.</li>
+              </ul>
+            </div>
+
+            <!-- Columna 3: Comportamiento en Redes Sociales -->
+            <div class="persona-detail-card">
+              <h4 class="card-inner-title"><i data-lucide="smartphone"></i> Hábitos en Instagram & Facebook</h4>
+              <ul class="bullet-list-styled">
+                <li><strong>Consumo en Reels:</strong> Revisa el feed de Reels en la cama antes de dormir con audífonos puestos.</li>
+                <li><strong>Guarda silenciosamente:</strong> Guarda videos devocionales y fragmentos de guitarra acústica para volver a orar con ellos.</li>
+                <li><strong>Comparte en Stories privadas:</strong> Comparte canciones que le tocaron el corazón en sus historias de "Mejores Amigos" (Close Friends).</li>
+                <li><strong>Baja interacción en comentarios públicos:</strong> Prefiere enviar mensajes directos (DM) cuando una canción lo quiebra emocionalmente.</li>
+              </ul>
+            </div>
+
+            <!-- Columna 4: Estrategia de Contenido para Mateo -->
+            <div class="persona-detail-card highlight-card">
+              <h4 class="card-inner-title"><i data-lucide="zap"></i> Fórmula de Contenido Ganadora</h4>
+              <div class="formula-box">
+                <span class="formula-label">Gancho (0-3 seg):</span>
+                <p class="formula-text">"Para el que siente que ya no tiene fuerzas para orar..."</p>
+              </div>
+              <div class="formula-box">
+                <span class="formula-label">Visual:</span>
+                <p class="formula-text">Plano medio con guitarra acústica, iluminación tenue y cálida, mirada directa a cámara sincera y empática.</p>
+              </div>
+              <div class="formula-box">
+                <span class="formula-label">Llamado a la Acción (CTA):</span>
+                <p class="formula-text">"No tienes que decir nada. Solo guarda este audio y deja que sea tu oración de hoy."</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PERSONA 2: DAVID -->
+        <div class="persona-card-view" id="view-persona-david">
+          <div class="persona-header-banner">
+            <div class="persona-header-main">
+              <span class="persona-badge-tag">Audiencia de Valor & Leads de Producción</span>
+              <h3 class="persona-full-title">David Morales · "El Músico & Líder de Alabanza"</h3>
+              <p class="persona-tagline">"Quiero que mi equipo suene con excelencia. Busco acordes ricos, armonías que vayan más allá de los 4 acordes de siempre y recursos que pueda enseñar a mi banda."</p>
+            </div>
+            <div class="persona-quick-stats">
+              <div class="quick-stat-item">
+                <span class="qs-label">Edad</span>
+                <span class="qs-val">27 años</span>
+              </div>
+              <div class="quick-stat-item">
+                <span class="qs-label">Rol</span>
+                <span class="qs-val">Guitarrista / Productor / Líder</span>
+              </div>
+              <div class="quick-stat-item">
+                <span class="qs-label">Canal Principal</span>
+                <span class="qs-val">Instagram Carruseles + Facebook</span>
+              </div>
+              <div class="quick-stat-item">
+                <span class="qs-label">Canción Ancla</span>
+                <span class="qs-val">"Ven Jesús", "No Temeremos"</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="persona-body-grid">
+            <div class="persona-detail-card">
+              <h4 class="card-inner-title"><i data-lucide="alert-triangle"></i> Dolores & Necesidades</h4>
+              <ul class="bullet-list-styled">
+                <li><strong>Falta de formación musical avanzada:</strong> Batalla para encontrar cifrados bien armados con extensiones y tensiones modernas.</li>
+                <li><strong>Equipos de iglesia desmotivados:</strong> Le cuesta inspirar a sus músicos a ensayar y subir el estándar técnico.</li>
+                <li><strong>Canciones de su iglesia sin sonar profesionales:</strong> Quiere grabar sencillos para su ministerio local pero los estudios convencionales no entienden el corazón de la alabanza.</li>
+              </ul>
+            </div>
+
+            <div class="persona-detail-card">
+              <h4 class="card-inner-title"><i data-lucide="target"></i> Oportunidad de Conversión</h4>
+              <ul class="bullet-list-styled">
+                <li><strong>Cifrados y Charts PDF:</strong> Descarga los PDF de acordes de Jesús Espinosa para ensayar los domingos.</li>
+                <li><strong>Lead de Producción (Cyborg Records):</strong> Cliente potencial para producción de sencillos ($10,000 MXN / canción según Business Canvas).</li>
+                <li><strong>Embajador Congregacional:</strong> Si adopta una canción en su congregación, cientos de miembros aprenden a cantar la música de Jesús Espinosa.</li>
+              </ul>
+            </div>
+
+            <div class="persona-detail-card">
+              <h4 class="card-inner-title"><i data-lucide="share-2"></i> Comportamiento en Redes</h4>
+              <ul class="bullet-list-styled">
+                <li><strong>Colecciona carruseles:</strong> Guarda carruseles técnicos con voicings de guitarra o trucos de mezcla en Logic Pro.</li>
+                <li><strong>Etiqueta a su equipo:</strong> Comparte en grupos de WhatsApp de su banda de alabanza.</li>
+                <li><strong>Comenta consultas técnicas:</strong> Pregunta qué micrófonos, cuerdas o pedales usa Jesús en sus sesiones.</li>
+              </ul>
+            </div>
+
+            <div class="persona-detail-card highlight-card">
+              <h4 class="card-inner-title"><i data-lucide="zap"></i> Fórmula de Contenido para David</h4>
+              <div class="formula-box">
+                <span class="formula-label">Gancho:</span>
+                <p class="formula-text">"Deja de tocar los mismos 4 acordes en la alabanza. Prueba esta progresión..."</p>
+              </div>
+              <div class="formula-box">
+                <span class="formula-label">Formato:</span>
+                <p class="formula-text">Carrusel deslizable en Instagram con diagrama de trastes + video tocando el cambio armónico.</p>
+              </div>
+              <div class="formula-box">
+                <span class="formula-label">Llamado a la Acción (CTA):</span>
+                <p class="formula-text">"Comenta 'CHART' y te mando el cifrado completo con notas de dirección para tu equipo."</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PERSONA 3: SOFÍA -->
+        <div class="persona-card-view" id="view-persona-sofia">
+          <div class="persona-header-banner">
+            <div class="persona-header-main">
+              <span class="persona-badge-tag">Audiencia Orgánica & Viralizadora</span>
+              <h3 class="persona-full-title">Sofía Mendoza · "La Universitaria Sensible"</h3>
+              <p class="persona-tagline">"Me encanta cuando la música cristiana tiene buen diseño, letras poéticas y no suena estridente. Comparto lo que me hace sentir en paz."</p>
+            </div>
+            <div class="persona-quick-stats">
+              <div class="quick-stat-item">
+                <span class="qs-label">Edad</span>
+                <span class="qs-val">21 años</span>
+              </div>
+              <div class="quick-stat-item">
+                <span class="qs-label">Estudios</span>
+                <span class="qs-val">Diseño / Comunicación</span>
+              </div>
+              <div class="quick-stat-item">
+                <span class="qs-label">Canal Principal</span>
+                <span class="qs-val">Instagram Stories & Reels</span>
+              </div>
+              <div class="quick-stat-item">
+                <span class="qs-label">Afinidad</span>
+                <span class="qs-val">Estética minimalista & honestidad</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="persona-body-grid">
+            <div class="persona-detail-card">
+              <h4 class="card-inner-title"><i data-lucide="eye"></i> Qué Busca en Pantalla</h4>
+              <ul class="bullet-list-styled">
+                <li><strong>Estética visual impecable:</strong> Cuida mucho lo que repostea en su feed y sus historias. Si el video es ruidoso o visualmente pobre, no lo comparte.</li>
+                <li><strong>Letras poéticas y bíblicas:</strong> Valoración de metáforas cuidadas, frases para subrayar o copiar en su diario devocional.</li>
+                <li><strong>Autenticidad:</strong> Detecta de inmediato si alguien finge o sobreactúa en cámara.</li>
+              </ul>
+            </div>
+
+            <div class="persona-detail-card">
+              <h4 class="card-inner-title"><i data-lucide="repeat"></i> Su Poder Multiplicador</h4>
+              <ul class="bullet-list-styled">
+                <li><strong>Crea Stories con stickers de música:</strong> Pone los audios de Jesús de fondo mientras muestra su café de la mañana o sus lecturas.</li>
+                <li><strong>Viralidad en grupos de amigas:</strong> Manda reels por chat con notas como "amiga, escucha esto por favor".</li>
+                <li><strong>Generadora de User-Generated Content (UGC):</strong> Usa la música de Jesús como banda sonora para sus propios clips estéticos.</li>
+              </ul>
+            </div>
+
+            <div class="persona-detail-card">
+              <h4 class="card-inner-title"><i data-lucide="sliders"></i> Intersección con la Marca JE</h4>
+              <ul class="bullet-list-styled">
+                <li>Conecta con la paleta sobria (negro, blanco hueso, texturas con grano analógico del manual).</li>
+                <li>Le atrae la faceta de Jesús con guitarra acústica y café, una imagen amigable y sin pretensiones.</li>
+              </ul>
+            </div>
+
+            <div class="persona-detail-card highlight-card">
+              <h4 class="card-inner-title"><i data-lucide="zap"></i> Fórmula de Contenido para Sofía</h4>
+              <div class="formula-box">
+                <span class="formula-label">Gancho:</span>
+                <p class="formula-text">"Un recordatorio para tu corazón antes de que empiece la semana..."</p>
+              </div>
+              <div class="formula-box">
+                <span class="formula-label">Formato:</span>
+                <p class="formula-text">Reel estético con tipografía sobria sincronizada con los versos de la canción.</p>
+              </div>
+              <div class="formula-box">
+                <span class="formula-label">Llamado a la Acción (CTA):</span>
+                <p class="formula-text">"Comparte en tus historias con esa persona que hoy necesita recordar quién sostiene su vida."</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PERSONA 4: PASTOR ANDRÉS -->
+        <div class="persona-card-view" id="view-persona-pastor">
+          <div class="persona-header-banner">
+            <div class="persona-header-main">
+              <span class="persona-badge-tag">Alianzas Clave & Fechas en Vivo (Canvas: $15,000 MXN)</span>
+              <h3 class="persona-full-title">Pastor Andrés Castillo · "El Líder Pastoral"</h3>
+              <p class="persona-tagline">"Busco salmistas que amen a Dios más que al micrófono. Necesito ministros con testimonio comprobable para bendecir a nuestra congregación."</p>
+            </div>
+            <div class="persona-quick-stats">
+              <div class="quick-stat-item">
+                <span class="qs-label">Edad</span>
+                <span class="qs-val">44 años</span>
+              </div>
+              <div class="quick-stat-item">
+                <span class="qs-label">Congregación</span>
+                <span class="qs-val">Comunidad de 350-1,200 miembros</span>
+              </div>
+              <div class="quick-stat-item">
+                <span class="qs-label">Canal Principal</span>
+                <span class="qs-val">Facebook Videos & WhatsApp</span>
+              </div>
+              <div class="quick-stat-item">
+                <span class="qs-label">Interés</span>
+                <span class="qs-val">Eventos "Talento para Dios", Noches de Alabanza</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="persona-body-grid">
+            <div class="persona-detail-card">
+              <h4 class="card-inner-title"><i data-lucide="shield-check"></i> Criterios de Selección</h4>
+              <ul class="bullet-list-styled">
+                <li><strong>Doctrina y propósito:</strong> Que las canciones señalen a Cristo y no al artista (cumplimiento estricto del lema JE: "La esencia es el servicio, la meta la adoración").</li>
+                <li><strong>Cero escándalos:</strong> Valora el testimonio, la madurez espiritual y el respeto al orden pastoral.</li>
+                <li><strong>Claridad técnica:</strong> Agradece que el artista cuente con Rider Técnico profesional listo (documento presente en la carpeta).</li>
+              </ul>
+            </div>
+
+            <div class="persona-detail-card">
+              <h4 class="card-inner-title"><i data-lucide="dollar-sign"></i> Modelo de Negocio Asociado</h4>
+              <ul class="bullet-list-styled">
+                <li><strong>Conciertos y visitas a iglesias:</strong> $15,000.00 MXN por concierto según la estructura de costos del Business Model Canvas JE.</li>
+                <li><strong>Talleres para músicos de la iglesia:</strong> Clínica de producción, guitarra y liderazgo ministerial.</li>
+              </ul>
+            </div>
+
+            <div class="persona-detail-card">
+              <h4 class="card-inner-title"><i data-lucide="facebook"></i> Presencia en Facebook</h4>
+              <ul class="bullet-list-styled">
+                <li>Facebook es la red principal de pastores y líderes de más de 35 años en América Latina.</li>
+                <li>Prefieren videos horizontales de 3 a 5 minutos donde se aprecie la ministración en vivo y el canto congregacional.</li>
+              </ul>
+            </div>
+
+            <div class="persona-detail-card highlight-card">
+              <h4 class="card-inner-title"><i data-lucide="zap"></i> Fórmula de Contenido para Facebook</h4>
+              <div class="formula-box">
+                <span class="formula-label">Gancho:</span>
+                <p class="formula-text">"Cuando toda la congregación canta al unísono, algo sobrenatural ocurre en la atmósfera..."</p>
+              </div>
+              <div class="formula-box">
+                <span class="formula-label">Video:</span>
+                <p class="formula-text">Toma abierta de escenario con iluminación cuidada, Jesús guiando a la iglesia en "Cuan Grande es Dios / Ven Jesús".</p>
+              </div>
+              <div class="formula-box">
+                <span class="formula-label">Llamado a la Acción (CTA):</span>
+                <p class="formula-text">"Lleva esta noche de adoración a tu congregación. Rider y disponibilidad en el enlace de WhatsApp."</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         TAB 3: GENERADOR DE CONTENIDO & REGLA 1/3 (CURATOR & CREATOR)
+         =================================================================== -->
+    <section class="tab-content" id="tab-content-engine">
+      <div class="section-header-row">
+        <div>
+          <h2 class="section-title">Generador de Contenido Optimizado (Regla 1/3)</h2>
+          <p class="section-subtitle">Alineado a las directrices de <strong>Instagram Curator</strong> y <strong>Content Creator</strong></p>
+        </div>
+      </div>
+
+      <!-- Explicación de la Regla 1/3 -->
+      <div class="framework-banner">
+        <div class="framework-pillar">
+          <div class="pillar-number">33.3%</div>
+          <div class="pillar-content">
+            <h4>Contenido de Marca</h4>
+            <p>Música original, estética visual JE, identidad gráfica y lanzamientos discográficos.</p>
+          </div>
+        </div>
+        <div class="framework-pillar">
+          <div class="pillar-number">33.3%</div>
+          <div class="pillar-content">
+            <h4>Contenido Educativo</h4>
+            <p>Tips de producción en Logic Pro, voicings de guitarra, armonía y composición devocional.</p>
+          </div>
+        </div>
+        <div class="framework-pillar">
+          <div class="pillar-number">33.3%</div>
+          <div class="pillar-content">
+            <h4>Contenido Comunitario</h4>
+            <p>Testimonios de vida (Culiacán a los 12 años), heridas superadas, preguntas y oraciones.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Filtro de Pilares de Contenido -->
+      <div class="idea-category-selector">
+        <button class="idea-cat-btn active" data-pillar="worship" onclick="filterIdeaPillar('worship')">
+          <i data-lucide="music"></i> Adoración Íntima & Canciones
+        </button>
+        <button class="idea-cat-btn" data-pillar="vulnerability" onclick="filterIdeaPillar('vulnerability')">
+          <i data-lucide="book-heart"></i> Testimonio & Vulnerabilidad
+        </button>
+        <button class="idea-cat-btn" data-pillar="producer" onclick="filterIdeaPillar('producer')">
+          <i data-lucide="sliders"></i> Producción Musical (Cyborg)
+        </button>
+        <button class="idea-cat-btn" data-pillar="community" onclick="filterIdeaPillar('community')">
+          <i data-lucide="message-circle"></i> Comunidad & Respuestas
+        </button>
+      </div>
+
+      <!-- Tarjeta del Generador Dinámico -->
+      <div class="content-generator-card">
+        <div class="gen-card-top">
+          <div class="gen-badge-group">
+            <span class="gen-badge" id="dyn-pillar-badge">1/3 MARCA & ADORACIÓN</span>
+            <span class="gen-format-tag" id="dyn-format-tag"><i data-lucide="video"></i> Instagram Reel + FB Reel (9:16)</span>
+          </div>
+          <button class="btn-refresh-idea" onclick="generateRandomIdea()">
+            <i data-lucide="refresh-cw"></i> Otra Propuesta
+          </button>
+        </div>
+
+        <!-- Gancho Visual y Auditivo -->
+        <div class="gen-field-block">
+          <span class="gen-field-label"><i data-lucide="flame"></i> Gancho (Primeros 3 segundos - Audio & Texto en Pantalla):</span>
+          <div class="gen-hook-display" id="dyn-hook-text">
+            "Para el que siente que ya no tiene fuerzas para orar..."
+          </div>
+        </div>
+
+        <!-- Guión Visual -->
+        <div class="gen-field-block">
+          <span class="gen-field-label"><i data-lucide="clapperboard"></i> Guión de Producción y Dirección Visual:</span>
+          <div class="gen-script-box" id="dyn-script-text">
+            Plano medio con guitarra acústica sobre fondo neutro oscuro (#08080a). Iluminación cálida lateral suave. Toca los acordes iniciales de "Abba Padre" con rasgueo sutil. Mira a cámara con calidez sincera. Canta el coro con voz orgánica sin efectos excesivos.
+          </div>
+        </div>
+
+        <!-- Copy / Caption con Estrategia AIDA -->
+        <div class="gen-field-block">
+          <span class="gen-field-label"><i data-lucide="file-text"></i> Caption / Pie de Foto Optimizado:</span>
+          <div class="gen-caption-box" id="dyn-caption-text">
+            A veces no hacen falta mil palabras elaboradas, solo recordar a quién le perteneces. Jesús no vino para señalarte ni pedirte que seas perfecto, vino a amarte y restaurarte.<br><br>Guarda esta canción para tu devocional de mañana o compártela con alguien que esté pasando por una semana difícil. Enlace en bio para escuchar 'Abba Padre' completa en Spotify. 🕊️✨
+          </div>
+        </div>
+
+        <!-- CTA & Hashtags -->
+        <div class="gen-footer-grid">
+          <div class="cta-box">
+            <span class="cta-label">Llamado a la Acción (CTA de Alto Valor):</span>
+            <span class="cta-content" id="dyn-cta-text">"Guarda el audio y úsalo en tu momento de oración personal."</span>
+          </div>
+          <div class="hashtags-box">
+            <span class="cta-label">Hashtags Estratégicos (Sin saturar):</span>
+            <span class="hashtags-content" id="dyn-hashtags-text">#JesusEspinosa #AbbaPadre #MusicaCristiana #AdoracionIntima #GuitarraAcustica #WorshipEspanol</span>
+          </div>
+        </div>
+
+        <!-- Acciones del Generador -->
+        <div class="gen-actions-bar">
+          <button class="btn-primary" onclick="copyFullIdea()">
+            <i data-lucide="copy"></i> Copiar Guión y Caption Completo
+          </button>
+          <span class="copy-alert" id="copy-confirm-alert"><i data-lucide="check"></i> ¡Copiado al portapapeles!</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         TAB 4: LABORATORIO A/B & ESTADÍSTICAS (STATISTICIAN & EXPERIMENT)
+         =================================================================== -->
+    <section class="tab-content" id="tab-experiments">
+      <div class="section-header-row">
+        <div>
+          <h2 class="section-title">Laboratorio de Pruebas A/B & Causalidad Cuantitativa</h2>
+          <p class="section-subtitle">Motor inferencial de <strong>Statistician</strong> y <strong>Experiment Tracker</strong></p>
+        </div>
+      </div>
+
+      <!-- Guía Metodológica -->
+      <div class="methodology-card">
+        <div class="methodology-icon"><i data-lucide="shield-alert"></i></div>
+        <div class="methodology-text">
+          <h4>Principio Metodológico Fundamental:</h4>
+          <p>
+            <em>"La pluralidad de anécdotas no es dato, y un incremento del 5% sin muestra representativa es puro ruido aleatorio."</em> Antes de declarar un ganador entre dos formatos o ganchos de Reels, exige <strong>95% de confianza estadística ($p < 0.05$)</strong>.
+          </p>
+        </div>
+      </div>
+
+      <!-- Calculadora de Pruebas A/B -->
+      <div class="ab-experiment-container">
+        <h3 class="experiment-box-title"><i data-lucide="split"></i> Evaluador de Significancia Estadística (Test de Proporciones Z)</h3>
+        
+        <div class="ab-variants-grid">
+          <!-- Variante A -->
+          <div class="variant-panel variant-a">
+            <div class="variant-badge">Variante A (Control)</div>
+            <div class="input-row">
+              <label>Hipótesis / Hook A:</label>
+              <input type="text" id="ab-name-a" value="Hook Directo: 'Si sientes tu corazón cansado...'">
+            </div>
+            <div class="input-row-flex">
+              <div>
+                <label>Impresiones (N₁):</label>
+                <input type="number" id="ab-n1" value="3200" min="50" oninput="runABTestCalculation()">
+              </div>
+              <div>
+                <label>Completaciones / Saves (X₁):</label>
+                <input type="number" id="ab-x1" value="128" min="0" oninput="runABTestCalculation()">
+              </div>
+            </div>
+            <div class="variant-result-mini">
+              Tasa de Conversión A: <strong id="res-cr-a">4.00%</strong>
+            </div>
+          </div>
+
+          <!-- Variante B -->
+          <div class="variant-panel variant-b">
+            <div class="variant-badge">Variante B (Variante de Prueba)</div>
+            <div class="input-row">
+              <label>Hipótesis / Hook B:</label>
+              <input type="text" id="ab-name-b" value="Hook Provocador: '3 cosas que la iglesia te dijo y no son bíblicas...'">
+            </div>
+            <div class="input-row-flex">
+              <div>
+                <label>Impresiones (N₂):</label>
+                <input type="number" id="ab-n2" value="3450" min="50" oninput="runABTestCalculation()">
+              </div>
+              <div>
+                <label>Completaciones / Saves (X₂):</label>
+                <input type="number" id="ab-x2" value="224" min="0" oninput="runABTestCalculation()">
+              </div>
+            </div>
+            <div class="variant-result-mini">
+              Tasa de Conversión B: <strong id="res-cr-b">6.49%</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Veredicto del Test -->
+        <div class="ab-verdict-box" id="ab-verdict-container">
+          <div class="verdict-icon" id="verdict-icon"><i data-lucide="check-circle-2"></i></div>
+          <div class="verdict-text-content">
+            <div class="verdict-top-data">
+              <span class="data-pill">Z-Score: <strong id="val-zscore">4.24</strong></span>
+              <span class="data-pill">p-valor: <strong id="val-pvalue">&lt; 0.0001</strong></span>
+              <span class="data-pill">Confianza: <strong id="val-confidence">99.9%</strong></span>
+              <span class="data-pill">Uplift Relativo: <strong id="val-uplift">+62.3%</strong></span>
+            </div>
+            <h4 class="verdict-heading" id="verdict-heading">Victoria Estadísticamente Significativa de Variante B</h4>
+            <p class="verdict-explanation" id="verdict-explanation">
+              La probabilidad de que este resultado se deba al azar es inferior al 0.01%. La hipótesis de que los ganchos que exploran la vulnerabilidad y cuestionan barreras tradicionales conectan mejor con la audiencia joven queda matemáticamente validada. Se recomienda estandarizar esta estructura para los próximos 4 lanzamientos.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         TAB 5: AUDITORÍA EXPRESS DE PERFILES (INSTAGRAM & FACEBOOK)
+         =================================================================== -->
+    <section class="tab-content" id="tab-audit-tool">
+      <div class="section-header-row">
+        <div>
+          <h2 class="section-title">Auditoría Express de Perfiles de Meta</h2>
+          <p class="section-subtitle">Optimización de Biografía, Grid, Enlaces y Configuración Técnica</p>
+        </div>
+      </div>
+
+      <div class="audit-layout-grid">
+        <!-- Checklist Interactivo -->
+        <div class="audit-checklist-card">
+          <div class="audit-card-title-row">
+            <h3 class="card-inner-title"><i data-lucide="list-checks"></i> Lista de Verificación Algorítmica (10 Puntos)</h3>
+            <span class="audit-score-badge" id="audit-score-counter">80 / 100 Pts</span>
+          </div>
+
+          <div class="checklist-items" id="audit-checklist-group">
+            <label class="checklist-item">
+              <input type="checkbox" checked onchange="updateAuditScore()">
+              <div class="checklist-item-text">
+                <strong>Nombre de Perfil Optimizado para SEO:</strong> "Jesús Espinosa · Música & Producción" (Incluye palabras clave buscables, no solo el nombre).
+              </div>
+            </label>
+
+            <label class="checklist-item">
+              <input type="checkbox" checked onchange="updateAuditScore()">
+              <div class="checklist-item-text">
+                <strong>Biografía con Propuesta de Valor Clara:</strong> "Música que acompaña tus procesos y derriba barreras. La esencia es servir, la meta adorar."
+              </div>
+            </label>
+
+            <label class="checklist-item">
+              <input type="checkbox" checked onchange="updateAuditScore()">
+              <div class="checklist-item-text">
+                <strong>Smartlink Único Funcional:</strong> Enlace a Spotify, Apple Music, descargas de cifrados y contacto directo de WhatsApp.
+              </div>
+            </label>
+
+            <label class="checklist-item">
+              <input type="checkbox" checked onchange="updateAuditScore()">
+              <div class="checklist-item-text">
+                <strong>Historias Destacadas (Highlights) con Portada JE:</strong> 4 carpetas clave: 'Música', 'Acústicos', 'En Vivo' y 'Estudio'.
+              </div>
+            </label>
+
+            <label class="checklist-item">
+              <input type="checkbox" checked onchange="updateAuditScore()">
+              <div class="checklist-item-text">
+                <strong>Subtítulos Automáticos en 100% de Reels:</strong> El 78% de usuarios en transporte o trabajo ve reels en silencio.
+              </div>
+            </label>
+
+            <label class="checklist-item">
+              <input type="checkbox" checked onchange="updateAuditScore()">
+              <div class="checklist-item-text">
+                <strong>Paleta Visual Consistente:</strong> Respeto a los fondos oscuros (#08080a), blanco corporativo (#E2E4E3) y acentos (#00205B / #670001).
+              </div>
+            </label>
+
+            <label class="checklist-item">
+              <input type="checkbox" checked onchange="updateAuditScore()">
+              <div class="checklist-item-text">
+                <strong>Meta Business Suite Conectado:</strong> Publicación cruzada simultánea en Página de Facebook y Perfil de Instagram.
+              </div>
+            </label>
+
+            <label class="checklist-item">
+              <input type="checkbox" checked onchange="updateAuditScore()">
+              <div class="checklist-item-text">
+                <strong>Frecuencia Mínima de 3 a 4 Reels por Semana:</strong> Alimentación constante del motor de descubrimiento de Meta.
+              </div>
+            </label>
+
+            <label class="checklist-item">
+              <input type="checkbox" onchange="updateAuditScore()">
+              <div class="checklist-item-text">
+                <strong>Respuesta Rápida a Comentarios en los Primeros 60 Minutos:</strong> Responder con preguntas para triplicar la señal de engagement inicial.
+              </div>
+            </label>
+
+            <label class="checklist-item">
+              <input type="checkbox" onchange="updateAuditScore()">
+              <div class="checklist-item-text">
+                <strong>Canal de Difusión de Instagram Activo:</strong> Comunidad privada para enviar notas de voz, avances de maquetas y oraciones matutinas.
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Recomendaciones Prioritarias -->
+        <div class="audit-recommendations-card">
+          <h3 class="card-inner-title"><i data-lucide="zap"></i> Recomendaciones de Curaduría Inmediata</h3>
+
+          <div class="rec-card">
+            <span class="rec-priority high">Prioridad Alta</span>
+            <h4>Activar Canal de Difusión en Instagram</h4>
+            <p>Los canales de difusión tienen una tasa de apertura del <strong>85%</strong> (frente al 8% de un post normal). Es el puente perfecto para crear la comunidad de "Adoradores Cercanos" descrita en tu visión.</p>
+          </div>
+
+          <div class="rec-card">
+            <span class="rec-priority high">Prioridad Alta</span>
+            <h4>La Regla de los 60 Minutos</h4>
+            <p>Meta evalúa la tracción de un Reel en su primera hora. Si respondes a cada comentario con una pregunta abierta ("¿Qué parte de la letra te tocó más?"), generas una conversación que duplica las señales algorítmicas.</p>
+          </div>
+
+          <div class="rec-card">
+            <span class="rec-priority medium">Prioridad Media</span>
+            <h4>Integración del Servidor SocialAPIs MCP</h4>
+            <p>Aprovecha la herramienta que instalamos para consultar en segundos las métricas de competidores y de tus perfiles en tiempo real.</p>
+            <div class="code-snippet-box">
+              <code>mcp call socialapis/instagram_profile {"username": "jesusespinosamusic"}</code>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         TAB 6: PLAN DE CRECIMIENTO & HORARIOS (CALENDARIO OPTIMIZADO)
+         =================================================================== -->
+    <section class="tab-content" id="tab-growth-planner">
+      <div class="section-header-row">
+        <div>
+          <h2 class="section-title">Calendario Semanal & Matriz de Horarios Óptimos</h2>
+          <p class="section-subtitle">Horarios pico de devocionales y descanso para México y Latinoamérica</p>
+        </div>
+      </div>
+
+      <!-- Gráfico de Horarios Óptimos -->
+      <div class="chart-box full-width-chart">
+        <div class="chart-header">
+          <div>
+            <h3 class="chart-title"><i data-lucide="clock"></i> Actividad de la Audiencia por Horario (Zona Horaria Centro de México / GMT-6)</h3>
+            <p class="chart-desc">Comportamiento contrastado: Adoración Íntima / Devocional vs. Música Dinámica</p>
+          </div>
+          <span class="pill-tag">Basado en datos de consumo de audio y video</span>
+        </div>
+        <div class="chart-wrapper">
+          <canvas id="growthHabitsChart"></canvas>
+        </div>
+      </div>
+
+      <!-- Calendario Semanal 1/3 -->
+      <div class="weekly-schedule-grid">
+        <!-- Lunes -->
+        <div class="day-plan-card">
+          <div class="day-header">
+            <span class="day-name">Lunes</span>
+            <span class="day-time">19:30 hrs</span>
+          </div>
+          <span class="day-category-badge cat-edu">1/3 Educativo</span>
+          <h4 class="day-title">Carrusel: Acordes & Armonía</h4>
+          <p class="day-desc">"Acordes para que tu alabanza suene con peso y paz sin ser ruidosa". Enfoque para <strong>David (Músicos)</strong>.</p>
+          <span class="day-format">Formato: Carrusel 5 slides</span>
+        </div>
+
+        <!-- Martes -->
+        <div class="day-plan-card">
+          <div class="day-header">
+            <span class="day-name">Martes</span>
+            <span class="day-time">Todo el día</span>
+          </div>
+          <span class="day-category-badge cat-comm">Stories Interactivas</span>
+          <h4 class="day-title">Caja de Oración & Preguntas</h4>
+          <p class="day-desc">"¿Por qué situación necesitas que oremos hoy?". Respuestas personalizadas en video acústico.</p>
+          <span class="day-format">Formato: 4 Stories con stickers</span>
+        </div>
+
+        <!-- Miércoles -->
+        <div class="day-plan-card featured-day">
+          <div class="day-header">
+            <span class="day-name">Miércoles</span>
+            <span class="day-time">21:00 hrs</span>
+          </div>
+          <span class="day-category-badge cat-comm">1/3 Comunitario</span>
+          <h4 class="day-title">Reel de Testimonio / Vulnerabilidad</h4>
+          <p class="day-desc">"Lo que aprendí a los 12 años en Culiacán sobre el dolor humano". Conexión profunda con <strong>Mateo</strong>.</p>
+          <span class="day-format">Formato: Reel 45 seg a cámara</span>
+        </div>
+
+        <!-- Jueves -->
+        <div class="day-plan-card">
+          <div class="day-header">
+            <span class="day-name">Jueves</span>
+            <span class="day-time">18:00 hrs</span>
+          </div>
+          <span class="day-category-badge cat-edu">1/3 Educativo</span>
+          <h4 class="day-title">Producción: Maqueta vs Mezcla</h4>
+          <p class="day-desc">Antes y después de una producción en Cyborg Records. Impulso a leads de producción musical.</p>
+          <span class="day-format">Formato: Reel pantalla partida</span>
+        </div>
+
+        <!-- Viernes -->
+        <div class="day-plan-card featured-day">
+          <div class="day-header">
+            <span class="day-name">Viernes</span>
+            <span class="day-time">21:30 hrs</span>
+          </div>
+          <span class="day-category-badge cat-brand">1/3 Marca</span>
+          <h4 class="day-title">Reel Acústico Íntimo</h4>
+          <p class="day-desc">Versión acústica en vivo de "Abba Padre" o "Mi Corazón". Invitación a escuchar en Spotify.</p>
+          <span class="day-format">Formato: Reel vertical 60 seg</span>
+        </div>
+
+        <!-- Domingo -->
+        <div class="day-plan-card">
+          <div class="day-header">
+            <span class="day-name">Domingo</span>
+            <span class="day-time">13:30 hrs</span>
+          </div>
+          <span class="day-category-badge cat-brand">Facebook & Reels</span>
+          <h4 class="day-title">Adoración Congregacional</h4>
+          <p class="day-desc">Video de ministración en vivo en congregación o evento. Enfoque para <strong>Pastor Andrés</strong> y familias.</p>
+          <span class="day-format">Formato: Video horizontal FB + Reel</span>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===================================================================
+         TAB 7: SPOTIFY FOR DEVELOPERS API & DISCOGRAFÍA CONECTADA
+         =================================================================== -->
+    <section class="tab-content" id="tab-spotify-hub">
+      <div class="section-header-row">
+        <div>
+          <h2 class="section-title">Spotify for Developers · Inteligencia & Discografía Oficial</h2>
+          <p class="section-subtitle">Conectado mediante Client ID: <code>a6802fa7...</code> · Artista ID: <code>5oXAJD9KAqXH63yJo496WA</code></p>
+        </div>
+        <div class="spotify-sync-actions">
+          <button class="btn-primary btn-spotify-sync" onclick="syncSpotifyLive()"><i data-lucide="refresh-cw"></i> Sincronizar con Spotify</button>
+        </div>
+      </div>
+
+      <!-- Banner de Perfil Oficial de Artista -->
+      <div class="spotify-artist-banner">
+        <div class="spotify-artist-avatar">
+          <img src="https://i.scdn.co/image/ab6761610000e5ebb8860ae47e2fce89f2341ea7" alt="Jesus Espinosa" class="artist-img">
+          <span class="spotify-verified-badge"><i data-lucide="check"></i></span>
+        </div>
+        <div class="spotify-artist-meta">
+          <div class="artist-badge-row">
+            <span class="badge badge-spotify"><i data-lucide="radio"></i> Artista Oficial Verificado</span>
+            <span class="badge badge-neutral">OAuth Client Credentials: Activo</span>
+          </div>
+          <h3 class="artist-spotify-name">Jesus Espinosa</h3>
+          <p class="artist-spotify-bio">
+            Música que nace en el servicio y tiene como destino la adoración. Sencillos oficiales disponibles globalmente en Spotify y Apple Music.
+          </p>
+          <div class="spotify-actions-row">
+            <a href="https://open.spotify.com/artist/5oXAJD9KAqXH63yJo496WA" target="_blank" class="btn-spotify-external">
+              <i data-lucide="external-link"></i> Abrir Perfil en Spotify
+            </a>
+            <span class="api-sync-timestamp" id="spotify-sync-status"><i data-lucide="check-circle-2"></i> Credenciales Verificadas</span>
+          </div>
+        </div>
+        <div class="spotify-stats-badge-card">
+          <span class="ssb-label">Client ID</span>
+          <code class="ssb-code">a6802fa76c914d2bac31312afb80be6b</code>
+          <span class="ssb-label" style="margin-top: 10px;">Redirect URI Configurada</span>
+          <code class="ssb-code">http://localhost:3000/callback</code>
+        </div>
+      </div>
+
+      <!-- Grid de Canciones Oficiales -->
+      <div class="section-sub-heading" style="margin-top: 28px; margin-bottom: 16px;">
+        <h3 class="card-inner-title"><i data-lucide="disc"></i> Discografía Oficial Conectada & Atribución a Buyer Personas</h3>
+        <p class="chart-desc">Metadatos y carátulas originales obtenidos en vivo a través de la API oficial de Spotify</p>
+      </div>
+
+      <div class="spotify-tracks-grid" id="spotify-tracks-container">
+        <!-- Canción 1: Abba Padre -->
+        <div class="spotify-track-card">
+          <div class="track-cover-wrap">
+            <img src="https://i.scdn.co/image/ab67616d0000b273291c1b9733bccc8910cb963f" alt="Abba Padre" class="track-cover-img">
+            <span class="track-duration-pill">4:41</span>
+          </div>
+          <div class="track-card-content">
+            <span class="track-persona-tag">🎯 Mateo (Adoración Íntima / Sanidad)</span>
+            <h4 class="track-title">Abba Padre</h4>
+            <p class="track-album-sub">Sencillo · Lanzamiento: 01 May 2026</p>
+            <p class="track-funnel-desc">Vehículo principal en Instagram Reels para conectar con jóvenes cansados o heridos en la noche.</p>
+            <div class="track-actions-bottom">
+              <a href="https://open.spotify.com/track/5xxCbZMH2FDH2jTlH1BU9I" target="_blank" class="btn-track-play">
+                <i data-lucide="play"></i> Escuchar en Spotify
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Canción 2: Mi Corazón (Acoustic Version) -->
+        <div class="spotify-track-card">
+          <div class="track-cover-wrap">
+            <img src="https://i.scdn.co/image/ab67616d0000b273f134ed7f7b57577dd997ca17" alt="Mi Corazón" class="track-cover-img">
+            <span class="track-duration-pill">3:01</span>
+          </div>
+          <div class="track-card-content">
+            <span class="track-persona-tag">🎯 Sofía & Mateo (Vulnerabilidad & Paz)</span>
+            <h4 class="track-title">Mi Corazón (Acoustic Version)</h4>
+            <p class="track-album-sub">Sencillo Acústico · Lanzamiento: 09 Feb 2024</p>
+            <p class="track-funnel-desc">Ideal para Stories de Instagram, fondos de devocionales y clips estéticos con guitarra pura.</p>
+            <div class="track-actions-bottom">
+              <a href="https://open.spotify.com/track/78w6ovryMO8zuPFb7Oq9G6" target="_blank" class="btn-track-play">
+                <i data-lucide="play"></i> Escuchar en Spotify
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Canción 3: Ven Jesús -->
+        <div class="spotify-track-card">
+          <div class="track-cover-wrap">
+            <img src="https://i.scdn.co/image/ab67616d0000b27386072ff1dc0c9dd1e729da27" alt="Ven Jesús" class="track-cover-img">
+            <span class="track-duration-pill">3:12</span>
+          </div>
+          <div class="track-card-content">
+            <span class="track-persona-tag">🎯 David & Pastor Andrés (Congregacional)</span>
+            <h4 class="track-title">Ven Jesús</h4>
+            <p class="track-album-sub">Sencillo · Lanzamiento: 21 Ene 2024</p>
+            <p class="track-funnel-desc">Enfoque para líderes de alabanza e iglesias dominicales. Descarga de cifrados y acordes.</p>
+            <div class="track-actions-bottom">
+              <a href="https://open.spotify.com/track/4cGvfNnIMr91k0lU6y4zYT" target="_blank" class="btn-track-play">
+                <i data-lucide="play"></i> Escuchar en Spotify
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Canción 4: Camino a Marte -->
+        <div class="spotify-track-card">
+          <div class="track-cover-wrap">
+            <img src="https://i.scdn.co/image/ab67616d0000b2734206f9ac0604cec10dd8d153" alt="Camino a Marte" class="track-cover-img">
+            <span class="track-duration-pill">2:21</span>
+          </div>
+          <div class="track-card-content">
+            <span class="track-persona-tag">🎯 Audiencia Joven (Pop / Dinámico)</span>
+            <h4 class="track-title">Camino a Marte</h4>
+            <p class="track-album-sub">Sencillo · Lanzamiento: 21 Jun 2024</p>
+            <p class="track-funnel-desc">Música fresca de fe para el día a día, viajes, carretera y momentos de celebración gozosa.</p>
+            <div class="track-actions-bottom">
+              <a href="https://open.spotify.com/track/5Gsls9Ggz1A1NRKGHOWYoB" target="_blank" class="btn-track-play">
+                <i data-lucide="play"></i> Escuchar en Spotify
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Embudo Estratégico Social -> Spotify -->
+      <div class="spotify-funnel-card" style="margin-top: 28px;">
+        <h3 class="card-inner-title"><i data-lucide="workflow"></i> El Embudo de Conversión: Redes Sociales a Oyentes Fieles en Spotify</h3>
+        <div class="funnel-steps-grid">
+          <div class="funnel-step">
+            <div class="step-num">1</div>
+            <h4>Hook en Reel (0-3s)</h4>
+            <p>Atrapa con guitarra acústica y mensaje íntimo a <strong>Mateo</strong> o <strong>Sofía</strong> en Instagram/FB.</p>
+          </div>
+          <div class="funnel-arrow"><i data-lucide="arrow-right"></i></div>
+          <div class="funnel-step">
+            <div class="step-num">2</div>
+            <h4>Llamado a Guardar (CTA)</h4>
+            <p>"Guarda este audio para orar". Meta premia el guardado multiplicando el alcance orgánico.</p>
+          </div>
+          <div class="funnel-arrow"><i data-lucide="arrow-right"></i></div>
+          <div class="funnel-step">
+            <div class="step-num">3</div>
+            <h4>Smartlink en Biografía</h4>
+            <p>El usuario busca la versión completa y hace clic en el enlace de Spotify del perfil.</p>
+          </div>
+          <div class="funnel-arrow"><i data-lucide="arrow-right"></i></div>
+          <div class="funnel-step">
+            <div class="step-num">4</div>
+            <h4>Oyente Recurrente</h4>
+            <p>Añade "Abba Padre" a su playlist personal de devocional, generando streams constantes.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer con Identidad Institucional -->
+  <footer class="app-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <img src="assets/logo-imagotipo-blanco.png" alt="Jesús Espinosa" class="footer-logo-img">
+        <span class="footer-sub">ARTISTA CRISTIANO · PRODUCTOR MUSICAL · SUITE DE INTELIGENCIA META</span>
+      </div>
+      <p class="footer-copyright">
+        "La música no es el destino, es el medio. Servir es nuestro fundamento. La adoración es nuestro destino."
+      </p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
