@@ -43,3 +43,4 @@ Perfiles interactivos basados en el *Business Model Canvas* y el *Manual de Iden
   * *Ven Jesús* (21 Ene 2024)
   * *Camino a Marte* (21 Jun 2024)
 * **Embudo de Conversión:** Visualización del flujo desde el hook de Instagram/Facebook hasta oyentes recurrentes en Spotify.
+
