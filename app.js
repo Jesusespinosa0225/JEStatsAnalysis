@@ -761,7 +761,16 @@ function applyAdminMode(enableAdmin) {
     }
   });
 
-  // 3. Actualizar botón de la barra superior
+  // 3. Si al salir a Modo Vista estaba en una pestaña exclusiva de Admin, volver a Diagnóstico Meta
+  if (!enableAdmin) {
+    const activeTab = document.querySelector('.tab-content.active');
+    if (activeTab && (activeTab.id === 'tab-content-engine' || activeTab.id === 'tab-experiments')) {
+      const btnAnalytics = document.getElementById('btn-meta-analytics');
+      if (btnAnalytics) btnAnalytics.click();
+    }
+  }
+
+  // 4. Actualizar botón de la barra superior
   const modeLabel = document.getElementById('mode-label');
   const btnToggle = document.getElementById('btn-admin-toggle');
   if (modeLabel && btnToggle) {

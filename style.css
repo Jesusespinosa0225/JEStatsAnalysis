@@ -2445,6 +2445,13 @@ body.mode-admin .admin-toolbar-banner {
 }
 
 /* Restricciones en Modo Visualización (Solo Lectura) */
+body.mode-viewer #btn-content-engine,
+body.mode-viewer #btn-experiments,
+body.mode-viewer #tab-content-engine,
+body.mode-viewer #tab-experiments {
+  display: none !important;
+}
+
 body.mode-viewer .app-main-content input[type="number"],
 body.mode-viewer .app-main-content input[type="text"],
 body.mode-viewer .app-main-content input[type="checkbox"] {
