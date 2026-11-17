@@ -24,7 +24,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 
-<body class="theme-dark">
+<body class="theme-dark mode-viewer">
   <!-- Ambient Brand Glows (Manual de Identidad: Azul #00205B y Carmesí #670001) -->
   <div class="ambient-glow glow-blue"></div>
   <div class="ambient-glow glow-crimson"></div>
@@ -42,16 +42,20 @@
         </div>
       </div>
 
-      <!-- Quick Platform Status Badges -->
+      <!-- Quick Platform Status Badges & Mode Switcher -->
       <div class="header-badges-group">
         <div class="platform-indicator-pill meta-pill">
           <span class="pulse-dot meta-dot"></span>
-          <span class="pill-text"><i data-lucide="layers"></i> Meta API: Conectada</span>
+          <span class="pill-text"><i data-lucide="layers"></i> Meta API</span>
         </div>
         <div class="platform-indicator-pill spotify-pill">
           <span class="pulse-dot spotify-dot"></span>
-          <span class="pill-text"><i data-lucide="music-2"></i> Spotify API: Conectada</span>
+          <span class="pill-text"><i data-lucide="music-2"></i> Spotify API</span>
         </div>
+        <button class="btn-mode-toggle" id="btn-admin-toggle" onclick="handleAdminButtonClick()" title="Cambiar entre Modo Visualización y Modo Administrador">
+          <i data-lucide="lock" id="mode-icon"></i>
+          <span id="mode-label">Modo Vista · Admin</span>
+        </button>
       </div>
 
       <!-- Main Navigation Tabs -->
@@ -87,6 +91,27 @@
       </nav>
     </div>
   </header>
+
+  <!-- Barra de Control de Administrador (Visible solo en Modo Admin) -->
+  <div class="admin-toolbar-banner" id="admin-toolbar">
+    <div class="admin-toolbar-inner">
+      <div class="admin-tb-left">
+        <span class="admin-live-badge"><i data-lucide="shield-check"></i> MODO ADMINISTRADOR ACTIVO</span>
+        <span class="admin-tb-hint">Haz clic sobre cualquier cifra, texto, casilla o calculadora para editar directamente.</span>
+      </div>
+      <div class="admin-tb-actions">
+        <button class="btn-admin-action btn-save" onclick="saveAllAdminChanges(true)">
+          <i data-lucide="save"></i> Guardar Cambios
+        </button>
+        <button class="btn-admin-action btn-reset" onclick="resetAdminChanges()">
+          <i data-lucide="rotate-ccw"></i> Restaurar Original
+        </button>
+        <button class="btn-admin-action btn-logout" onclick="exitAdminMode()">
+          <i data-lucide="lock"></i> Salir a Modo Vista
+        </button>
+      </div>
+    </div>
+  </div>
 
   <!-- Hero Banner Contextual -->
   <section class="hero-section">
@@ -1255,6 +1280,37 @@
       </p>
     </div>
   </footer>
+
+  <!-- Modal de Autenticación de Administrador -->
+  <div class="admin-modal-overlay" id="admin-auth-modal" aria-hidden="true">
+    <div class="admin-modal-card" id="admin-modal-card">
+      <button class="admin-modal-close" type="button" onclick="closeAdminModal()" aria-label="Cerrar"><i data-lucide="x"></i></button>
+      <div class="admin-modal-icon">
+        <i data-lucide="key-round"></i>
+      </div>
+      <h3 class="admin-modal-title">Modo Administrador</h3>
+      <p class="admin-modal-desc">Ingresa la contraseña de administrador para desbloquear la edición de métricas, textos, calculadoras y auditoría.</p>
+      <form id="admin-login-form" onsubmit="submitAdminPassword(event)">
+        <div class="admin-password-field-wrap">
+          <input type="password" id="admin-password-input" placeholder="Ingresa la contraseña..." autocomplete="off" required>
+          <button type="button" class="btn-toggle-eye" onclick="togglePasswordVisibility()" title="Mostrar u ocultar contraseña">
+            <i data-lucide="eye" id="eye-icon"></i>
+          </button>
+        </div>
+        <p class="admin-auth-error" id="admin-auth-error">Contraseña incorrecta. Verifica e intenta de nuevo.</p>
+        <div class="admin-modal-actions">
+          <button type="button" class="btn-secondary" onclick="closeAdminModal()">Cancelar</button>
+          <button type="submit" class="btn-primary"><i data-lucide="unlock"></i> Desbloquear Edición</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast de Notificación Admin -->
+  <div class="admin-toast" id="admin-toast">
+    <i data-lucide="check-circle-2"></i>
+    <span id="admin-toast-text">Modo Administrador activado</span>
+  </div>
 
   <script src="app.js"></script>
 </body>

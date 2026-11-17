@@ -29,6 +29,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 6. Cargar Idea Inicial de Contenido
   generateRandomIdea();
+
+  // 7. Inicializar Sistema Dual (Modo Visualización vs. Modo Administrador)
+  initAdminSystem();
 });
 
 /* =====================================================================
@@ -663,3 +666,274 @@ window.syncSpotifyLive = async function() {
     }, 600);
   }
 };
+
+/* =====================================================================
+   10. SISTEMA DUAL: MODO VISUALIZACIÓN VS. MODO ADMINISTRADOR
+   ===================================================================== */
+const ADMIN_PASS_KEY = 'Km95026q2';
+const STORAGE_STATE_KEY = 'je_suite_admin_state_v1';
+let isAdminActive = false;
+
+const EDITABLE_SELECTORS = [
+  '.stat-number',
+  '.stat-context',
+  '.kpi-value',
+  '.kpi-sub',
+  '.hero-description',
+  '.persona-tagline',
+  '.bullet-list-styled li',
+  '.formula-text',
+  '.gen-hook-display',
+  '.gen-script-box',
+  '.gen-caption-box',
+  '.cta-content',
+  '.hashtags-content',
+  '.rec-card h4',
+  '.rec-card p',
+  '.day-title',
+  '.day-desc',
+  '.day-time',
+  '.track-funnel-desc'
+].join(', ');
+
+function initAdminSystem() {
+  // Asignar identificadores únicos a los elementos editables para persistencia
+  const editableElements = document.querySelectorAll(EDITABLE_SELECTORS);
+  editableElements.forEach((el, idx) => {
+    if (!el.getAttribute('data-edit-id')) {
+      el.setAttribute('data-edit-id', 'editable-node-' + idx);
+    }
+    el.addEventListener('blur', () => {
+      if (isAdminActive) {
+        saveAllAdminChanges(false);
+      }
+    });
+  });
+
+  // Guardar estado en cambios de inputs cuando se está en modo Admin
+  const mainInputs = document.querySelectorAll('.app-main-content input');
+  mainInputs.forEach((inp, idx) => {
+    if (!inp.id) {
+      inp.id = 'auto-input-' + idx;
+    }
+    inp.addEventListener('change', () => {
+      if (isAdminActive) {
+        saveAllAdminChanges(false);
+      }
+    });
+  });
+
+  // Cargar cualquier cambio guardado previamente por el Administrador
+  loadSavedAdminState();
+
+  // Iniciar siempre en Modo Visualización (Solo Lectura)
+  applyAdminMode(false);
+
+  // Cerrar modal con tecla Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeAdminModal();
+    }
+  });
+}
+
+function applyAdminMode(enableAdmin) {
+  isAdminActive = enableAdmin;
+
+  document.body.classList.toggle('mode-admin', enableAdmin);
+  document.body.classList.toggle('mode-viewer', !enableAdmin);
+
+  // 1. Habilitar o deshabilitar inputs dentro de <main>
+  const mainInputs = document.querySelectorAll('.app-main-content input');
+  mainInputs.forEach(inp => {
+    inp.disabled = !enableAdmin;
+    inp.readOnly = !enableAdmin;
+  });
+
+  // 2. Habilitar o deshabilitar edición directa en textos clave
+  const editableElements = document.querySelectorAll(EDITABLE_SELECTORS);
+  editableElements.forEach(el => {
+    el.contentEditable = enableAdmin ? 'true' : 'false';
+    if (enableAdmin) {
+      el.setAttribute('title', 'Modo Admin: Haz clic para editar este texto');
+    } else {
+      el.removeAttribute('title');
+    }
+  });
+
+  // 3. Actualizar botón de la barra superior
+  const modeLabel = document.getElementById('mode-label');
+  const btnToggle = document.getElementById('btn-admin-toggle');
+  if (modeLabel && btnToggle) {
+    if (enableAdmin) {
+      btnToggle.innerHTML = '<i data-lucide="unlock" id="mode-icon"></i><span id="mode-label">Modo Admin Activo</span>';
+    } else {
+      btnToggle.innerHTML = '<i data-lucide="lock" id="mode-icon"></i><span id="mode-label">Modo Vista · Admin</span>';
+    }
+    if (window.lucide) window.lucide.createIcons();
+  }
+}
+
+window.handleAdminButtonClick = function() {
+  if (isAdminActive) {
+    exitAdminMode();
+  } else {
+    openAdminModal();
+  }
+};
+
+window.openAdminModal = function() {
+  const modal = document.getElementById('admin-auth-modal');
+  const passInput = document.getElementById('admin-password-input');
+  const errEl = document.getElementById('admin-auth-error');
+
+  if (modal) {
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden', 'false');
+    if (errEl) errEl.classList.remove('visible');
+    if (passInput) {
+      passInput.value = '';
+      setTimeout(() => passInput.focus(), 80);
+    }
+  }
+};
+
+window.closeAdminModal = function() {
+  const modal = document.getElementById('admin-auth-modal');
+  if (modal) {
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden', 'true');
+  }
+};
+
+window.togglePasswordVisibility = function() {
+  const passInput = document.getElementById('admin-password-input');
+  if (!passInput) return;
+  passInput.type = passInput.type === 'password' ? 'text' : 'password';
+};
+
+window.submitAdminPassword = function(event) {
+  event.preventDefault();
+  const passInput = document.getElementById('admin-password-input');
+  const errEl = document.getElementById('admin-auth-error');
+  const cardEl = document.getElementById('admin-modal-card');
+
+  const entered = passInput ? passInput.value : '';
+
+  if (entered === ADMIN_PASS_KEY) {
+    closeAdminModal();
+    applyAdminMode(true);
+    showAdminToast('Modo Administrador desbloqueado. Ya puedes editar la app.');
+  } else {
+    if (errEl) errEl.classList.add('visible');
+    if (cardEl) {
+      cardEl.classList.remove('shake');
+      void cardEl.offsetWidth;
+      cardEl.classList.add('shake');
+    }
+    if (passInput) passInput.select();
+  }
+};
+
+window.exitAdminMode = function() {
+  saveAllAdminChanges(false);
+  applyAdminMode(false);
+  showAdminToast('Modo Visualización activado (Solo lectura).');
+};
+
+window.saveAllAdminChanges = function(showToastNotification = true) {
+  const state = {
+    inputs: {},
+    checkboxes: {},
+    texts: {}
+  };
+
+  // Guardar inputs de números y texto
+  document.querySelectorAll('.app-main-content input').forEach(inp => {
+    if (inp.type === 'checkbox') {
+      state.checkboxes[inp.id] = inp.checked;
+    } else {
+      state.inputs[inp.id] = inp.value;
+    }
+  });
+
+  // Guardar textos editables
+  document.querySelectorAll(EDITABLE_SELECTORS).forEach(el => {
+    const id = el.getAttribute('data-edit-id');
+    if (id) {
+      state.texts[id] = el.innerHTML;
+    }
+  });
+
+  try {
+    localStorage.setItem(STORAGE_STATE_KEY, JSON.stringify(state));
+    if (showToastNotification) {
+      showAdminToast('Cambios guardados correctamente.');
+    }
+  } catch (e) {
+    console.error('Error al guardar estado:', e);
+  }
+};
+
+function loadSavedAdminState() {
+  try {
+    const raw = localStorage.getItem(STORAGE_STATE_KEY);
+    if (!raw) return;
+    const state = JSON.parse(raw);
+
+    if (state.inputs) {
+      Object.keys(state.inputs).forEach(id => {
+        const inp = document.getElementById(id);
+        if (inp && inp.type !== 'checkbox') {
+          inp.value = state.inputs[id];
+        }
+      });
+    }
+
+    if (state.checkboxes) {
+      Object.keys(state.checkboxes).forEach(id => {
+        const inp = document.getElementById(id);
+        if (inp && inp.type === 'checkbox') {
+          inp.checked = state.checkboxes[id];
+        }
+      });
+    }
+
+    if (state.texts) {
+      Object.keys(state.texts).forEach(editId => {
+        const el = document.querySelector(`[data-edit-id="${editId}"]`);
+        if (el) {
+          el.innerHTML = state.texts[editId];
+        }
+      });
+    }
+
+    // Recalcular métricas con los valores cargados
+    calculateMetaScore();
+    runABTestCalculation();
+    updateAuditScore();
+  } catch (e) {
+    console.error('Error al cargar estado guardado:', e);
+  }
+}
+
+window.resetAdminChanges = function() {
+  if (confirm('¿Deseas restaurar todos los valores y textos originales de fábrica?')) {
+    localStorage.removeItem(STORAGE_STATE_KEY);
+    window.location.reload();
+  }
+};
+
+function showAdminToast(message) {
+  const toast = document.getElementById('admin-toast');
+  const toastText = document.getElementById('admin-toast-text');
+  if (!toast || !toastText) return;
+
+  toastText.innerText = message;
+  toast.classList.add('show');
+
+  setTimeout(() => {
+    toast.classList.remove('show');
+  }, 3200);
+}
+

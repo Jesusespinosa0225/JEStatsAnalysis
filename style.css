@@ -2287,3 +2287,385 @@ body {
   background: #2563eb !important;
   color: #ffffff !important;
 }
+
+/* =====================================================================
+   SISTEMA DUAL: MODO VISUALIZACIÓN VS. MODO ADMINISTRADOR
+   ===================================================================== */
+
+/* Botón en la barra superior */
+.btn-mode-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(226, 228, 227, 0.16);
+  color: var(--color-bone);
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.btn-mode-toggle svg {
+  width: 13px;
+  height: 13px;
+  color: var(--color-gold);
+}
+
+.btn-mode-toggle:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: var(--color-gold);
+  color: #ffffff;
+}
+
+body.mode-admin .btn-mode-toggle {
+  background: rgba(198, 146, 20, 0.18);
+  border-color: var(--color-gold);
+  color: #facc15;
+  box-shadow: 0 0 14px rgba(198, 146, 20, 0.25);
+}
+
+/* Barra superior flotante de Administrador */
+.admin-toolbar-banner {
+  display: none;
+  background: linear-gradient(90deg, rgba(0, 32, 91, 0.85) 0%, rgba(18, 18, 24, 0.95) 50%, rgba(103, 0, 1, 0.75) 100%);
+  border-bottom: 1px solid rgba(250, 204, 21, 0.35);
+  backdrop-filter: blur(16px);
+  position: sticky;
+  top: 63px;
+  z-index: 95;
+  padding: 10px 24px;
+  animation: fadeIn 0.25s ease;
+}
+
+body.mode-admin .admin-toolbar-banner {
+  display: block;
+}
+
+.admin-toolbar-inner {
+  max-width: 1320px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.admin-tb-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.admin-live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(250, 204, 21, 0.16);
+  border: 1px solid rgba(250, 204, 21, 0.45);
+  color: #facc15;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+}
+
+.admin-live-badge svg {
+  width: 13px;
+  height: 13px;
+}
+
+.admin-tb-hint {
+  font-size: 12px;
+  color: var(--color-bone);
+}
+
+.admin-tb-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.btn-admin-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 6px 13px;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  border: 1px solid transparent;
+}
+
+.btn-admin-action svg {
+  width: 13px;
+  height: 13px;
+}
+
+.btn-admin-action.btn-save {
+  background: var(--color-green);
+  color: #000000;
+}
+
+.btn-admin-action.btn-save:hover {
+  background: #34d399;
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.4);
+}
+
+.btn-admin-action.btn-reset {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.18);
+  color: var(--color-bone);
+}
+
+.btn-admin-action.btn-reset:hover {
+  background: rgba(244, 63, 94, 0.2);
+  border-color: #fb7185;
+  color: #ffffff;
+}
+
+.btn-admin-action.btn-logout {
+  background: rgba(0, 0, 0, 0.45);
+  border-color: rgba(250, 204, 21, 0.4);
+  color: #facc15;
+}
+
+.btn-admin-action.btn-logout:hover {
+  background: rgba(250, 204, 21, 0.2);
+}
+
+/* Restricciones en Modo Visualización (Solo Lectura) */
+body.mode-viewer .app-main-content input[type="number"],
+body.mode-viewer .app-main-content input[type="text"],
+body.mode-viewer .app-main-content input[type="checkbox"] {
+  pointer-events: none;
+  opacity: 0.78;
+  cursor: default;
+}
+
+body.mode-viewer .checklist-item {
+  cursor: default;
+}
+
+/* Indicadores visuales de campos editables en Modo Administrador */
+body.mode-admin [contenteditable="true"] {
+  outline: none;
+  border-radius: 4px;
+  transition: background-color 0.18s ease, box-shadow 0.18s ease;
+  cursor: text;
+}
+
+body.mode-admin [contenteditable="true"]:hover {
+  background-color: rgba(143, 165, 255, 0.08);
+  box-shadow: 0 0 0 1px dashed rgba(143, 165, 255, 0.45);
+}
+
+body.mode-admin [contenteditable="true"]:focus {
+  background-color: rgba(0, 32, 91, 0.35);
+  box-shadow: 0 0 0 2px #60a5fa;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+/* Modal de Contraseña de Administrador */
+.admin-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: rgba(0, 0, 0, 0.78);
+  backdrop-filter: blur(12px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.admin-modal-overlay.open {
+  display: flex;
+  animation: fadeIn 0.2s ease;
+}
+
+.admin-modal-card {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  background: #111116;
+  border: 1px solid rgba(226, 228, 227, 0.16);
+  border-radius: var(--radius-lg);
+  padding: 32px 28px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.75), 0 0 32px rgba(0, 32, 91, 0.35);
+  text-align: center;
+}
+
+.admin-modal-card.shake {
+  animation: modalShake 0.35s ease;
+}
+
+@keyframes modalShake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-8px); }
+  40%, 80% { transform: translateX(8px); }
+}
+
+.admin-modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: transparent;
+  border: none;
+  color: var(--color-text-dim);
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 50%;
+  transition: var(--transition-smooth);
+}
+
+.admin-modal-close:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.admin-modal-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(198, 146, 20, 0.14);
+  border: 1px solid rgba(198, 146, 20, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+}
+
+.admin-modal-icon svg {
+  width: 24px;
+  height: 24px;
+  color: #facc15;
+}
+
+.admin-modal-title {
+  font-family: var(--font-display);
+  font-size: 21px;
+  font-weight: 800;
+  color: var(--color-white);
+  margin-bottom: 8px;
+}
+
+.admin-modal-desc {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.admin-password-field-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.admin-password-field-wrap input {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(226, 228, 227, 0.18);
+  border-radius: var(--radius-sm);
+  color: #ffffff;
+  font-family: var(--font-body);
+  font-size: 15px;
+  padding: 12px 42px 12px 14px;
+  outline: none;
+  transition: var(--transition-smooth);
+}
+
+.admin-password-field-wrap input:focus {
+  border-color: var(--color-gold);
+  box-shadow: 0 0 0 2px rgba(198, 146, 20, 0.25);
+}
+
+.btn-toggle-eye {
+  position: absolute;
+  right: 10px;
+  background: transparent;
+  border: none;
+  color: var(--color-text-dim);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+}
+
+.btn-toggle-eye:hover {
+  color: var(--color-bone);
+}
+
+.btn-toggle-eye svg {
+  width: 16px;
+  height: 16px;
+}
+
+.admin-auth-error {
+  display: none;
+  font-size: 12px;
+  font-weight: 600;
+  color: #fb7185;
+  margin-bottom: 14px;
+}
+
+.admin-auth-error.visible {
+  display: block;
+}
+
+.admin-modal-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+/* Toast flotante */
+.admin-toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 1000;
+  background: #14141b;
+  border: 1px solid rgba(16, 185, 129, 0.45);
+  color: #ffffff;
+  padding: 12px 18px;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  opacity: 0;
+  transform: translateY(16px);
+  pointer-events: none;
+  transition: all 0.25s ease;
+}
+
+.admin-toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.admin-toast svg {
+  width: 16px;
+  height: 16px;
+  color: var(--color-green);
+}
+
